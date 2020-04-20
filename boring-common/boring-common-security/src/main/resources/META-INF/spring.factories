@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.boring.common.security.service.UserDetailsServiceImpl,\
+  com.boring.common.security.util.JwtTokenUtil,\
+  com.boring.common.security.filter.JwtAuthenticationTokenFilter

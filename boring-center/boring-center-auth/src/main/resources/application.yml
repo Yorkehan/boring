@@ -1,0 +1,46 @@
+server:
+  port: 8080
+eureka:
+  #注册中心地址
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8082/eureka/
+  #服务名称
+  instance:
+    appname: boring-cener-auth
+spring:
+  application:
+    name: boring-cener-auth
+  datasource:
+    druid:
+      url: jdbc:mysql://10.211.55.5:3306/client?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: 111111
+  redis:
+    host: 10.211.55.5
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates/ftl/
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 4a3583c52db343eac31d
+            client-secret: 25b538773e02fe8c99bb3a82c0b5015717298649
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#jwt:
+#  expiration: 6
+debug: true
+#auth:
+#  eurl: /kjkda

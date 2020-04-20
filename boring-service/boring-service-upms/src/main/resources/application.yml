@@ -1,0 +1,48 @@
+server:
+  port: 5000
+eureka:
+  #注册中心地址
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8082/eureka/
+  #服务名称
+  instance:
+    appname: boring-service-upms
+spring:
+  application:
+    name: boring-service-upms
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 111111
+    url: jdbc:mysql://10.211.55.5:3306/upms?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  redis:
+    host: 10.211.55.5
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+hystrix:
+  metrics:
+    enabled: true
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+jwt:
+  expiration: 60
+
+auth:
+  eurl: /user/info/**
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://BORING-CENER-AUTH/oauth/check_token
+    client:
+      client-id: 1
+      client-secret: admin
+debug: true

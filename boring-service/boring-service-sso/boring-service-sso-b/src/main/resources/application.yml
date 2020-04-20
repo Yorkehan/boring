@@ -1,0 +1,25 @@
+security:
+  oauth2:
+    client:
+      access-token-uri: http://127.0.0.1:8080/oauth/token
+      client-id: 2
+      user-authorization-uri: http://127.0.0.1:8080/oauth/authorize
+      client-authentication-scheme: header
+      client-secret: admin
+    resource:
+      token-info-uri: http://127.0.0.1:8080/oauth/check_token
+server:
+  port: 8087
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2CCLIEN_B
+eureka:
+  #注册中心地址
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8082/eureka/
+spring:
+  application:
+    name: boring-service-sso-b
+debug: true

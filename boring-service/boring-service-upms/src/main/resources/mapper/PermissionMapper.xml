@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boring.service.upms.mapper.PermissionMapper">
+
+  <resultMap id="permissionMap" type="com.boring.service.common.upms.entity.Permission">
+                  <id property="id" column="id"/>
+                        <result property="isParent" column="is_parent"/>
+                        <result property="parentId" column="parent_id"/>
+                        <result property="permissionName" column="permission_name"/>
+                        <result property="permissionCode" column="permission_code"/>
+                        <result property="permissionComponent" column="permission_component"/>
+                        <result property="permissionIcon" column="permission_icon"/>
+                        <result property="permissionPath" column="permission_path"/>
+                        <result property="permissionUrl" column="permission_url"/>
+                        <result property="permissionSort" column="permission_sort"/>
+                        <result property="state" column="state"/>
+                        <result property="createTime" column="create_time"/>
+                        <result property="updateTime" column="update_time"/>
+            </resultMap>
+    <select id="findPermissionsByRoleId" resultType="com.boring.service.common.upms.vo.MenuVo">
+        select  p.* from
+            permission p left join role_permission rp on p.id = rp.permission_id where rp.role_id=#{roleId};
+    </select>
+</mapper>

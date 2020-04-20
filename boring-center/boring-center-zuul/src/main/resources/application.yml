@@ -1,0 +1,31 @@
+server:
+  port: 8081
+eureka:
+  #注册中心地址
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8082/eureka/
+  #服务名称
+  instance:
+    appname: boring-center-zuul
+spring:
+  application:
+    name: boring-center-zuul
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+zuul:
+  prefix: /api
+  strip-prefix: true
+  routes:
+    user:
+      path: /auth/**
+      serviceId: boring-cener-auth

@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.boring.common.core.config.JacksonConfig,\
+  com.boring.common.core.config.RedisTemplateConfig,\
+  com.boring.common.core.exception.GlobalExceptionHandler,\
+  com.boring.common.core.util.SpringContextHolder,\
+  com.boring.common.core.mybatis.WebMvcConfig

@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.boring.common.log.LogAutoConfiguration,\
+com.boring.common.log.feign.factory.RemoteLogServiceFallbackFactory,\
+  com.boring.common.log.feign.fallback.RemoteLogServiceFallbackImpl
+org.springframework.context.ApplicationContextInitializer=\
+    com.boring.common.log.init.ApplicationLoggerInitializer
