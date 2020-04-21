@@ -3,7 +3,7 @@
 package com.boring.common.core.exception;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2018年06月22日16:22:15
  */
 public class ValidateCodeException extends RuntimeException {

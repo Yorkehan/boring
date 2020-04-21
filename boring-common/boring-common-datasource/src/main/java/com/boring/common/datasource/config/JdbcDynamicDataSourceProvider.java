@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2020/2/6
  * <p>
  * 从数据源中获取 配置信息

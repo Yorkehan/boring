@@ -36,7 +36,7 @@ import java.util.zip.ZipOutputStream;
  * copy ruoyi-generator/src/main/java/com/ruoyi/generator/util/GenUtils.java
  *
  * @author ruoyi
- * @author lengleng
+ * @author yorkehan
  * @date 2020-03-13
  */
 @Slf4j

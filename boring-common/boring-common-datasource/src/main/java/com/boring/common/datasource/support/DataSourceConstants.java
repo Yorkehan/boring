@@ -19,7 +19,7 @@
 package com.boring.common.datasource.support;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2019-04-01
  * <p>
  * 数据源相关常量

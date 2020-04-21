@@ -7,7 +7,7 @@ import com.boring.common.log.entity.SysLog;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * 系统日志事件
  */
 public class SysLogEvent extends ApplicationEvent {

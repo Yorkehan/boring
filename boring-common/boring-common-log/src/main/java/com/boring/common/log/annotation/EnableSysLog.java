@@ -5,7 +5,7 @@ package com.boring.common.log.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2019/2/1
  * 操作日志注解
  */

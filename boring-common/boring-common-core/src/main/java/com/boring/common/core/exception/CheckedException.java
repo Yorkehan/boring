@@ -5,7 +5,7 @@ package com.boring.common.core.exception;
 import lombok.NoArgsConstructor;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 😴2018年06月22日16:21:57
  */
 @NoArgsConstructor

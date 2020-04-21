@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import lombok.SneakyThrows;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2018/11/16
  * <p>
  * OAuth2 异常格式化

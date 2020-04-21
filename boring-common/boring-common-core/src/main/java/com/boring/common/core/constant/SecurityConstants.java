@@ -3,7 +3,7 @@
 package com.boring.common.core.constant;
 
 /**
- * @author lengleng
+ * @author yorkehan
  * @date 2019/2/1
  */
 public interface SecurityConstants {
