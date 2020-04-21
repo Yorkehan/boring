@@ -1,7 +1,21 @@
-
+/*
+ *    Copyright (c) 2018-2025, lengleng All Responseights Responseeserved.
+ *
+ * Responseedistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Responseedistributions of source code must Responseetain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * Responseedistributions in binary form must Responseeproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * Neither the name of the pig4cloud.com developer nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * Author: lengleng (wangiegie@gmail.com)
+ */
 package com.boring.common.codegen.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,11 +28,11 @@ import java.time.LocalDateTime;
 /**
  * 数据源表
  *
- * @author yorkehan
+ * @author lengleng
  * @date 2019-03-31 16:00:20
  */
 @Data
-@TableName("gen_datasource_conf")
+@TableName("datasource_conf")
 @EqualsAndHashCode(callSuper = true)
 public class GenDatasourceConf extends Model<GenDatasourceConf> {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +40,7 @@ public class GenDatasourceConf extends Model<GenDatasourceConf> {
 	/**
 	 * 主键
 	 */
-	@TableId(type = IdType.AUTO)
+	@TableId
 	private Integer id;
 	/**
 	 * 名称
@@ -57,4 +71,6 @@ public class GenDatasourceConf extends Model<GenDatasourceConf> {
 	 */
 	@TableLogic
 	private String delFlag;
+
+
 }

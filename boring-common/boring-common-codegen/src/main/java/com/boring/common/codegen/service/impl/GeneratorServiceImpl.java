@@ -1,21 +1,36 @@
-
+/*
+ *    Copyright (c) 2018-2025, lengleng All Responseights Responseeserved.
+ *
+ * Responseedistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Responseedistributions of source code must Responseetain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * Responseedistributions in binary form must Responseeproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * Neither the name of the pig4cloud.com developer nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * Author: lengleng (wangiegie@gmail.com)
+ */
 
 package com.boring.common.codegen.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import com.boring.common.codegen.entity.GenConfig;
 import com.boring.common.codegen.entity.GenFormConf;
 import com.boring.common.codegen.mapper.GenFormConfMapper;
 import com.boring.common.codegen.mapper.GeneratorMapper;
 import com.boring.common.codegen.service.GeneratorService;
-import com.boring.common.codegen.util.CodeGenUtils;
+import com.boring.common.codegen.util.GenUtils;
+import com.boring.common.datasource.support.DynamicDataSourceContextHolder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +40,7 @@ import java.util.Map;
 import java.util.zip.ZipOutputStream;
 
 /**
- * @author yorkehan
+ * @author lengleng
  * @date 2018-07-30
  * <p>
  * 代码生成器
@@ -40,12 +55,12 @@ public class GeneratorServiceImpl implements GeneratorService {
 	 * 分页查询表
 	 *
 	 * @param tableName 查询条件
-	 * @param dsName
+	 * @param id
 	 * @return
 	 */
 	@Override
-	@DS("#last")
-	public IPage<List<Map<String, Object>>> getPage(Page page, String tableName, String dsName) {
+	public IPage<List<Map<String, Object>>> getPage(Page page, String tableName, Integer id) {
+		DynamicDataSourceContextHolder.setDataSourceType(id);
 		return generatorMapper.queryList(page, tableName);
 	}
 
@@ -62,24 +77,32 @@ public class GeneratorServiceImpl implements GeneratorService {
 				.eq(GenFormConf::getTableName, genConfig.getTableName())
 				.orderByDesc(GenFormConf::getCreateTime));
 
-		DynamicDataSourceContextHolder.push(genConfig.getDsName());
+		DynamicDataSourceContextHolder.setDataSourceType(genConfig.getId());
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		ZipOutputStream zip = new ZipOutputStream(outputStream);
 
 		String tableNames = genConfig.getTableName();
 		for (String tableName : StrUtil.split(tableNames, StrUtil.DASHED)) {
 			//查询表信息
-			Map<String, String> table = generatorMapper.queryTable(tableName,genConfig.getDsName());
+			Map<String, String> table = queryTable(tableName);
 			//查询列信息
-			List<Map<String, String>> columns = generatorMapper.queryColumns(tableName, genConfig.getDsName());
+			List<Map<String, String>> columns = queryColumns(tableName);
 			//生成代码
 			if (CollUtil.isNotEmpty(formConfList)) {
-				CodeGenUtils.generatorCode(genConfig, table, columns, zip, formConfList.get(0));
+				GenUtils.generatorCode(genConfig, table, columns, zip, formConfList.get(0));
 			} else {
-				CodeGenUtils.generatorCode(genConfig, table, columns, zip, null);
+				GenUtils.generatorCode(genConfig, table, columns, zip, null);
 			}
 		}
 		IoUtil.close(zip);
 		return outputStream.toByteArray();
+	}
+
+	private Map<String, String> queryTable(String tableName) {
+		return generatorMapper.queryTable(tableName);
+	}
+
+	private List<Map<String, String>> queryColumns(String tableName) {
+		return generatorMapper.queryColumns(tableName);
 	}
 }

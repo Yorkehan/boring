@@ -1,4 +1,19 @@
-
+/*
+ *    Copyright (c) 2018-2025, lengleng All Responseights Responseeserved.
+ *
+ * Responseedistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Responseedistributions of source code must Responseetain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * Responseedistributions in binary form must Responseeproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * Neither the name of the pig4cloud.com developer nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * Author: lengleng (wangiegie@gmail.com)
+ */
 package com.boring.common.codegen.service.impl;
 
 import cn.hutool.core.util.CharsetUtil;
@@ -10,7 +25,8 @@ import com.boring.common.codegen.entity.GenFormConf;
 import com.boring.common.codegen.mapper.GenFormConfMapper;
 import com.boring.common.codegen.mapper.GeneratorMapper;
 import com.boring.common.codegen.service.GenFormConfService;
-import com.boring.common.codegen.util.CodeGenUtils;
+import com.boring.common.codegen.util.GenUtils;
+import com.boring.common.datasource.support.DynamicDataSourceContextHolder;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.lang.StringUtils;
@@ -29,7 +45,7 @@ import java.util.Properties;
 /**
  * 表单管理
  *
- * @author yorkehan
+ * @author lengleng
  * @date 2019-08-12 15:55:35
  */
 @Service
@@ -41,13 +57,13 @@ public class GenFormConfServiceImpl extends ServiceImpl<GenFormConfMapper, GenFo
 	 * 1. 根据数据源、表名称，查询已配置表单信息
 	 * 2. 不存在调用模板生成
 	 *
-	 * @param dsName    数据源ID
+	 * @param dsId      数据源ID
 	 * @param tableName 表名称
 	 * @return
 	 */
 	@Override
 	@SneakyThrows
-	public String getForm(String dsName, String tableName) {
+	public String getForm(Integer dsId, String tableName) {
 		GenFormConf form = getOne(Wrappers.<GenFormConf>lambdaQuery()
 				.eq(GenFormConf::getTableName, tableName)
 				.orderByDesc(GenFormConf::getCreateTime), false);
@@ -56,25 +72,26 @@ public class GenFormConfServiceImpl extends ServiceImpl<GenFormConfMapper, GenFo
 			return form.getFormInfo();
 		}
 
-		List<Map<String, String>> columns = generatorMapper.queryColumns(tableName,dsName);
+		DynamicDataSourceContextHolder.setDataSourceType(dsId);
+		List<Map<String, String>> columns = generatorMapper.queryColumns(tableName);
 		//设置velocity资源加载器
 		Properties prop = new Properties();
 		prop.put("file.resource.loader.class", ClasspathResourceLoader.class.getName());
 		Velocity.init(prop);
-		Template template = Velocity.getTemplate("template/avue/crud.js.vm", CharsetUtil.UTF_8);
+		Template template = Velocity.getTemplate("template/crud.js.vm", CharsetUtil.UTF_8);
 		VelocityContext context = new VelocityContext();
 
 		List<ColumnEntity> columnList = new ArrayList<>();
 		for (Map<String, String> column : columns) {
 			ColumnEntity columnEntity = new ColumnEntity();
 			columnEntity.setComments(column.get("columnComment"));
-			columnEntity.setLowerAttrName(StringUtils.uncapitalize(CodeGenUtils.columnToJava(column.get("columnName"))));
+			columnEntity.setLowerAttrName(StringUtils.uncapitalize(GenUtils.columnToJava(column.get("columnName"))));
 			columnList.add(columnEntity);
 		}
 		context.put("columns", columnList);
 		StringWriter writer = new StringWriter();
 		template.merge(context, writer);
-		return StrUtil.trim(StrUtil.removePrefix(writer.toString(), CodeGenUtils.CRUD_PREFIX));
+		return StrUtil.trim(StrUtil.removePrefix(writer.toString(), GenUtils.CRUD_PREFIX));
 	}
 
 }

@@ -1,8 +1,22 @@
-
+/*
+ *    Copyright (c) 2018-2025, lengleng All Responseights Responseeserved.
+ *
+ * Responseedistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Responseedistributions of source code must Responseetain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * Responseedistributions in binary form must Responseeproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * Neither the name of the pig4cloud.com developer nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * Author: lengleng (wangiegie@gmail.com)
+ */
 
 package com.boring.common.codegen.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -16,7 +30,7 @@ import java.time.LocalDateTime;
 /**
  * 生成记录
  *
- * @author yorkehan
+ * @author lengleng
  * @date 2019-08-12 15:55:35
  */
 @Data
@@ -29,7 +43,7 @@ public class GenFormConf extends Model<GenFormConf> {
 	/**
 	 * ID
 	 */
-	@TableId(type = IdType.AUTO)
+	@TableId
 	@ApiModelProperty(value = "ID")
 	private Integer id;
 	/**
@@ -57,4 +71,9 @@ public class GenFormConf extends Model<GenFormConf> {
 	 */
 	@ApiModelProperty(value = "删除标记")
 	private String delFlag;
+	/**
+	 * 所属租户
+	 */
+	@ApiModelProperty(value = "所属租户", hidden = true)
+	private Integer tenantId;
 }

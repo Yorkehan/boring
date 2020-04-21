@@ -1,1 +1,14 @@
+server:
+  port: 8666
+eureka:
+  #注册中心地址
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8082/eureka/
+  #服务名称
+  instance:
+    appname: boring-site-manage
+spring:
+  application:
+    name: boring-site-manage
 

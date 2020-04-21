@@ -2,7 +2,12 @@ server:
   port: 5002
 
 spring:
+  datasource:
+    druid:
+      username: root
+      password: 111111
+      url: jdbc:mysql://10.211.55.5:3306/codegen?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      driver-class-name: com.mysql.cj.jdbc.Driver
   application:
-    name: codegen
-
+    name: boring-common-codegen
 

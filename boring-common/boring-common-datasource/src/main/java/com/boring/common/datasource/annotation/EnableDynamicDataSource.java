@@ -18,7 +18,7 @@
 
 package com.boring.common.datasource.annotation;
 
-import com.boring.common.datasource.DynamicDataSourceAutoConfiguration;
+import com.boring.common.datasource.config.DynamicDataSourceConfig;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -33,6 +33,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(DynamicDataSourceAutoConfiguration.class)
+@Import(DynamicDataSourceConfig.class)
 public @interface EnableDynamicDataSource {
 }
