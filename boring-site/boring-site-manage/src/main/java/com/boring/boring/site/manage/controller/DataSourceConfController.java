@@ -19,9 +19,9 @@ public class DataSourceConfController {
 
     private final DataSourceConfService dataSourceConfService;
 
-    @PostMapping("/page")
-    public Response datasources(@RequestParam("size") Long size,@RequestParam Long current, DataSourceConfDTO dataSourceConfDTO){
-      return dataSourceConfService.dataSourceConfList(size,current,dataSourceConfDTO);
+    @GetMapping("/page")
+    public Response datasources(@RequestParam("limit") Long size,@RequestParam("page") Long current){
+      return dataSourceConfService.dataSourceConfList(size,current);
     }
     @PostMapping("/add")
     public Response datasourceAdd(DataSourceConfDTO dataSourceConfDTO){

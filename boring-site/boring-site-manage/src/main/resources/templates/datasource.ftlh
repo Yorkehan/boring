@@ -42,7 +42,7 @@
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table"
-                           lay-data="{height:'full-200',url:'/datasource/list', page:true, id:'idTest'}"
+                           lay-data="{height:'full-200',url:'/dsconf/page', page:true, id:'idTest'}"
                            lay-filter="demo">
                         <thead>
                         <tr>
@@ -51,8 +51,8 @@
                             <th lay-data="{field:'url',sort: true}">jdbcURL</th>
                             <th lay-data="{field:'username'}">用户名</th>
                             <th lay-data="{field:'password'}">密码</th>
-                            <th lay-data="{field:'createTime', sort: true}">创建时间</th>
-                            <th lay-data="{field:'updateTime'}">更新时间</th>
+                            <th lay-data="{field:'createDate', sort: true}">创建时间</th>
+                            <th lay-data="{field:'updateDate'}">更新时间</th>
                             <th lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#barDemo'}">操作</th>
                         </tr>
                         </thead>

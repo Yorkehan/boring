@@ -12,9 +12,33 @@ import java.time.LocalDateTime;
 @Data
 public class DataSourceConfDTO {
     private Integer id;
+    /**
+     * 名称
+     */
+    private String name;
+    /**
+     * jdbcurl
+     */
     private String url;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 密码
+     */
     private String password;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createDate;
+    /**
+     * 更新
+     */
+    private LocalDateTime updateDate;
+    /**
+     * 删除标记
+     */
+
+    private String delFlag;
 }

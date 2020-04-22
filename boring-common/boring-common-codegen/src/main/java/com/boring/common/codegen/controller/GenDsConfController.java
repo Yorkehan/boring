@@ -79,7 +79,7 @@ public class GenDsConfController {
 	 * @return Response
 	 */
 	@PostMapping
-	public Response save(@RequestBody GenDatasourceConf datasourceConf) {
+	public Response save(GenDatasourceConf datasourceConf) {
 		return Response.ok(datasourceConfService.saveDsByEnc(datasourceConf));
 	}
 

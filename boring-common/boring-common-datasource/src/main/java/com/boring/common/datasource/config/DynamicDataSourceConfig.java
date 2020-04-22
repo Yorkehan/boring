@@ -6,6 +6,7 @@ import com.mysql.cj.jdbc.Driver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.transaction.ChainedTransactionManager;
@@ -33,6 +34,7 @@ import java.util.Optional;
 public class DynamicDataSourceConfig implements TransactionManagementConfigurer {
 	private final Map<Object, Object> dataSourceMap = new HashMap<>(8);
 	private final DruidDataSourceProperties dataSourceProperties;
+
 	private final StringEncryptor stringEncryptor;
 
 	@Bean("dynamicDataSource")

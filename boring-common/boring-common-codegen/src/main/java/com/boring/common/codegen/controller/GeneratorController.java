@@ -59,7 +59,7 @@ public class GeneratorController {
 	 */
 	@SneakyThrows
 	@PostMapping("/code")
-	public void generatorCode(@RequestBody GenConfig genConfig, HttpServletResponse  response) {
+	public void generatorCode(GenConfig genConfig, HttpServletResponse  response) {
 		byte[] data = generatorService.generatorCode(genConfig);
 		response.reset();
 		response.setHeader(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=%s.zip", genConfig.getTableName()));

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface DataSourceConfService {
 
     @RequestMapping(value = "/dsconf/page",method = RequestMethod.GET)
-    Response<DataSourceConfDTO> dataSourceConfList(@RequestParam("size") Long size,@RequestParam Long current, @RequestBody DataSourceConfDTO dataSourceConfDTO);
+    Response<Page> dataSourceConfList(@RequestParam("size") Long size,@RequestParam("current") Long current);
 
     @RequestMapping(value = "/dsconf/getOne",method = RequestMethod.GET)
     Response<DataSourceConfDTO> getDataSourceById(@RequestParam("id") Integer id);
