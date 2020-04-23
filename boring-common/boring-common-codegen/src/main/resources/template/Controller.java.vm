@@ -6,7 +6,6 @@ import com.boring.common.core.util.Response;
 import com.boring.common.log.annotation.EnableSysLog;
 import ${package}.${moduleName}.entity.${className};
 import ${package}.${moduleName}.service.${className}Service;
-import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -57,9 +56,7 @@ public class ${className}Controller {
      * @return Response
      */
     @ApiOperation(value = "新增${comments}", notes = "新增${comments}")
-    @EnableSysLog("新增${comments}" )
     @PostMapping
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_add')" )
     public Response save(@RequestBody ${className} ${classname}) {
         return Response.ok(${classname}Service.save(${classname}));
     }
@@ -70,9 +67,7 @@ public class ${className}Controller {
      * @return Response
      */
     @ApiOperation(value = "修改${comments}", notes = "修改${comments}")
-    @EnableSysLog("修改${comments}" )
     @PutMapping
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_edit')" )
     public Response updateById(@RequestBody ${className} ${classname}) {
         return Response.ok(${classname}Service.updateById(${classname}));
     }
@@ -83,9 +78,7 @@ public class ${className}Controller {
      * @return Response
      */
     @ApiOperation(value = "通过id删除${comments}", notes = "通过id删除${comments}")
-    @EnableSysLog("通过id删除${comments}" )
     @DeleteMapping("/{${pk.lowerAttrName}}" )
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_del')" )
     public Response removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}) {
         return Response.ok(${classname}Service.removeById(${pk.lowerAttrName}));
     }

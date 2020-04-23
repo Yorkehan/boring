@@ -78,9 +78,9 @@ public class GenUtils {
 		templates.add("template/Controller.java.vm");
 		templates.add("template/menu.sql.vm");
 
-		templates.add("template/index.vue.vm");
-		templates.add("template/api.js.vm");
-		templates.add("template/crud.js.vm");
+		templates.add("template/avue/index.vue.vm");
+		templates.add("template/avue/api.js.vm");
+		templates.add("template/avue/crud.js.vm");
 		return templates;
 	}
 

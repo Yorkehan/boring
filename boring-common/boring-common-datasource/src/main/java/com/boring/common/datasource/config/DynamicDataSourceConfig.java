@@ -72,7 +72,7 @@ public class DynamicDataSourceConfig implements TransactionManagementConfigurer 
 			ds.setUsername((String) db.get(DataSourceConstants.DS_USER_NAME));
 
 //			String decPwd = stringEncryptor.decrypt((String) db.get(DataSourceConstants.DS_USER_PWD));
-			String decPwd = DataSourceConstants.DS_USER_PWD;
+			String decPwd = (String)db.get(DataSourceConstants.DS_USER_PWD);
 			ds.setPassword(decPwd);
 			dataSourceMap.put(db.get(DataSourceConstants.DS_ROUTE_KEY), ds);
 		}));
